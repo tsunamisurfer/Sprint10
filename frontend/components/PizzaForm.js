@@ -37,21 +37,23 @@ export default function PizzaForm() {
     setIsPending(true);
     setError(null);
 
-     if (!formState.fullName.trim() || formState.fullName.length < 3 || formState.fullName.length > 20) {
-      setIsPending(false);
-      setError("fullName is required");
-      return;
- 
-    }
+    console.log("Submitting form with:", formState); // Debugging log
+
+    // ✅ Validate `size` before `fullName`
     if (!["S", "M", "L"].includes(formState.size)) {
       setIsPending(false);
       setError("size must be one of the following values: S, M, L");
       return;
-   
+    }
+
+    if (!formState.fullName.trim() || formState.fullName.length < 3 || formState.fullName.length > 20) {
+      setIsPending(false);
+      setError("fullName is required");
+      return;
     }
 
     const order = {
-      fullName: formState.fullName,
+      fullName: formState.fullName.trim(),
       size: formState.size,
       toppings: formState.toppings.length > 0 ? formState.toppings : [],
     };

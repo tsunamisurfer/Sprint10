@@ -60,9 +60,9 @@ const ordersSlice = createSlice({
       })
       .addCase(fetchOrders.fulfilled, (state, action) => {
         state.loading = false;
-        console.log("Orders merged and loaded successfully:", action.payload); // 🔥 Debugging
-        state.orders = action.payload; // ✅ Ensure orders are updated
-        saveOrdersToStorage(state.orders); // ✅ Persist merged orders
+        console.log("Orders merged and loaded successfully:", action.payload); 
+        state.orders = action.payload; 
+        saveOrdersToStorage(state.orders); 
       })
       .addCase(fetchOrders.rejected, (state, action) => {
         state.loading = false;
