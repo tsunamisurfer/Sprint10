@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
+import ordersReducer from './ordersSlice';
+import sizeFilterReducer from './sizeFilterSlice'
 
-const exampleReducer = (state = { count: 0 }) => {
+/*const exampleReducer = (state = { count: 0 }) => {
   return state
 }
 
@@ -15,4 +17,14 @@ export const resetStore = () => configureStore({
   ),
 })
 
-export const store = resetStore()
+export const store = resetStore() */
+
+export const store = configureStore({
+  reducer: {
+    orders: ordersReducer,
+    sizeFilter: sizeFilterReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware(), 
+});
+
