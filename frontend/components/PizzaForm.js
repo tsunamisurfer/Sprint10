@@ -39,16 +39,17 @@ export default function PizzaForm() {
 
     console.log("Submitting form with:", formState); // Debugging log
 
-    // ✅ Validate `size` before `fullName`
-    if (!["S", "M", "L"].includes(formState.size)) {
-      setIsPending(false);
-      setError("size must be one of the following values: S, M, L");
-      return;
-    }
-
+    // ✅ Validate `fullName` first
     if (!formState.fullName.trim() || formState.fullName.length < 3 || formState.fullName.length > 20) {
       setIsPending(false);
       setError("fullName is required");
+      return;
+    }
+
+    // ✅ Validate `size` second
+    if (!["S", "M", "L"].includes(formState.size)) {
+      setIsPending(false);
+      setError("size must be one of the following values: S, M, L");
       return;
     }
 

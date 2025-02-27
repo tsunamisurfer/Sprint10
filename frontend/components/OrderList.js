@@ -27,13 +27,24 @@ export default function OrderList() {
       {filterOrders.length === 0 && !loading && <p>No orders available.</p>}
 
       <ol>
-        {filterOrders.map((order, index) => (
-          <li key={index}>
-            <p data-testid="orderText">
-              {order.customer} ordered a size {order.size} with {order.toppings.length || "no"} toppings
-            </p>
-          </li>
-        ))}
+        {filterOrders.map((order, index) => {
+          // Use `customer`, fallback to "Unknown Customer" if missing
+          const customerName = order.customer || "Unknown Customer";
+          
+          const toppingCount = order.toppings ? order.toppings.length : 0;
+          const toppingText = toppingCount === 0 
+            ? "with no toppings" 
+            : `with ${toppingCount} topping${toppingCount > 1 ? "s" : ""}`;
+
+          // Ensure the key is unique based on order's properties
+          const key = order.id ?? `${customerName}-${order.size}-${toppingCount}-${index}`;
+
+          return (
+            <li key={key} data-testid={`order-${order.id ?? index}`}>
+              <p>{customerName} ordered a size {order.size} {toppingText}</p>
+            </li>
+          );
+        })}
       </ol>
 
       <div id="sizeFilters">
@@ -52,5 +63,3 @@ export default function OrderList() {
     </div>
   );
 }
-
-
