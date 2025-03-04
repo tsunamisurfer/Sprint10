@@ -67,7 +67,7 @@ describe('Pizza App', () => {
     await waitFor(() => screen.getByText('James Dean ordered a size M with 4 toppings', queryOptions), waitForOptions);
   });
 
-  /*test('[4] Validation message ("fullName is required") renders if order lacks fullName', async () => {
+  test('[4] Validation message ("fullName is required") renders if order lacks fullName', async () => {
     await user.selectOptions(size, 'Large');
     await user.click(submit);
     await waitFor(() => screen.getByText('fullName is required', queryOptions), waitForOptions);
@@ -96,5 +96,5 @@ describe('Pizza App', () => {
     await user.click(submit);
     await waitFor(() => screen.getByText('Order in progress', queryOptions), waitForOptions);
     await waitForElementToBeRemoved(() => screen.queryByText('Order in progress', queryOptions));
-  }); */
+  }); 
 });
